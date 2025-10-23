@@ -179,7 +179,7 @@ const LandingPage = () => {
             bgGradient="linear(to-r, white, gray.100)"
             bgClip="text"
           >
-            Savvy
+            Savy
             <br />
             <Text as="span" color={accentColor}></Text>
           </MotionHeading>
@@ -272,6 +272,7 @@ const LandingPage = () => {
             bgGradient={`linear(to-r, ${primaryColor}, ${accentColor})`}
             bgClip="text"
             transition={{ duration: 0.8 }}
+            color="black"
           >
             Barriers to Financial Excellence
           </MotionHeading>

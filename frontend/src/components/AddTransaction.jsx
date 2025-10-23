@@ -18,16 +18,16 @@ import {
   FormErrorMessage,
   useToast,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react"; // ✅ Removed useContext
-import { useGlobalContext } from "../context/context"; // ✅ Correct import
+import { useState, useEffect } from "react"; 
+import { useGlobalContext } from "../context/context"; 
 
 export default function TransactionForm({ isOpen, onClose }) {
-  // ✅ FIXED: Use hook directly, not useContext()
+ 
   const { 
     formData, 
     setFormData, 
-    selectedValue,      // ✅ Updated from 'value'
-    setSelectedValue,   // ✅ Updated from 'setValue'
+    selectedValue,      
+    setSelectedValue,  
     handleFormSubmit, 
     categories = [] 
   } = useGlobalContext();
@@ -35,7 +35,7 @@ export default function TransactionForm({ isOpen, onClose }) {
   const [errors, setErrors] = useState({ description: "", amount: "", category: "" });
   const toast = useToast();
 
-  // Reset form when modal opens
+
   useEffect(() => {
     if (isOpen) {
       setFormData({
@@ -52,12 +52,12 @@ export default function TransactionForm({ isOpen, onClose }) {
 
   function handleFormChange(event) {
     const { name, value } = event.target;
-    setFormData(prev => ({ ...prev, [name]: value })); // Use functional update
+    setFormData(prev => ({ ...prev, [name]: value })); 
 
-    // Clear error on input
+  
     setErrors(prev => ({ ...prev, [name]: "" }));
 
-    // Validate on change
+   
     if (name === "description" && !value.trim()) {
       setErrors(prev => ({ ...prev, description: "Description is required" }));
     } else if (name === "amount" && (!value || parseFloat(value) <= 0)) {
@@ -68,14 +68,13 @@ export default function TransactionForm({ isOpen, onClose }) {
   }
 
   function handleTypeChange(val) {
-    setSelectedValue(val); // ✅ Use correct setter
+    setSelectedValue(val); 
     setFormData(prev => ({ ...prev, type: val }));
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    
-    // Validate all fields
+ 
     const newErrors = {
       description: !formData.description.trim() ? "Description is required" : "",
       amount: !formData.amount || parseFloat(formData.amount) <= 0 ? "Amount must be greater than 0" : "",
@@ -93,11 +92,11 @@ export default function TransactionForm({ isOpen, onClose }) {
     }
 
     try {
-      // Submit with correct type
+    
       handleFormSubmit({ 
         ...formData, 
-        type: selectedValue, // Ensure type matches radio selection
-        amount: parseFloat(formData.amount) // Convert to number
+        type: selectedValue, 
+        amount: parseFloat(formData.amount) 
       });
       
       toast({
@@ -118,7 +117,7 @@ export default function TransactionForm({ isOpen, onClose }) {
     }
   }
 
-  // Don't render if modal is closed
+ 
   if (!isOpen) return null;
 
   return (
@@ -195,7 +194,7 @@ export default function TransactionForm({ isOpen, onClose }) {
             <FormControl as="fieldset" mb={4}>
               <FormLabel as="legend">Transaction Type</FormLabel>
               <RadioGroup
-                value={selectedValue}  // ✅ Use selectedValue from context
+                value={selectedValue}  
                 onChange={handleTypeChange}
               >
                 <HStack spacing={6}>

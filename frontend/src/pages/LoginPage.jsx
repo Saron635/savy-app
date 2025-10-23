@@ -154,7 +154,7 @@ export default function LoginPage() {
         opacity={0.05}
       />
 
-      {/* Main Login Card */}
+ 
       <MotionBox
         bg={cardBg}
         p={{ base: 6, md: 10 }}
@@ -171,7 +171,7 @@ export default function LoginPage() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         whileHover={{ y: -5 }}
       >
-        {/* Premium Header */}
+       
         <VStack spacing={6} align="stretch">
           <HStack justify="center" spacing={4} mb={2}>
             <Box

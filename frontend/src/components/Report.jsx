@@ -37,7 +37,7 @@ export default function Report({ isOpen, onClose, transactions }) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl">
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent maxW="900px">
         <ModalHeader>Report</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
